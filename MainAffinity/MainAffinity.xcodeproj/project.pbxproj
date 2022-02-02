@@ -47,11 +47,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6B34BCC827AA81000025A307 /* ViewControllers */ = {
+		60DD4D9727AA8509007512F8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F2AE275427AA7CD900B972D1 /* AppDelegate.swift */,
+				F2AE275627AA7CD900B972D1 /* SceneDelegate.swift */,
 			);
-			path = ViewControllers;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		60DD4D9B27AA859A007512F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				60DD4D9D27AA85DC007512F8 /* Storyboards */,
+				F2AE276027AA7CDB00B972D1 /* Assets.xcassets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		60DD4D9C27AA85AB007512F8 /*  Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F2AE275827AA7CD900B972D1 /* ViewController.swift */,
+			);
+			path = " Controllers";
+			sourceTree = "<group>";
+		};
+		60DD4D9D27AA85DC007512F8 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F2AE275A27AA7CD900B972D1 /* Main.storyboard */,
+				F2AE276227AA7CDB00B972D1 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		6B34BCC927AA81190025A307 /* CoreData */ = {
@@ -82,13 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				6B34BCC927AA81190025A307 /* CoreData */,
-				6B34BCC827AA81000025A307 /* ViewControllers */,
-				F2AE275427AA7CD900B972D1 /* AppDelegate.swift */,
-				F2AE275627AA7CD900B972D1 /* SceneDelegate.swift */,
-				F2AE275827AA7CD900B972D1 /* ViewController.swift */,
-				F2AE275A27AA7CD900B972D1 /* Main.storyboard */,
-				F2AE276027AA7CDB00B972D1 /* Assets.xcassets */,
-				F2AE276227AA7CDB00B972D1 /* LaunchScreen.storyboard */,
+				60DD4D9727AA8509007512F8 /* Resources */,
+				60DD4D9C27AA85AB007512F8 /*  Controllers */,
+				60DD4D9B27AA859A007512F8 /* Views */,
 				6B34BCC427AA7F6C0025A307 /* User.swift */,
 				F2AE276527AA7CDB00B972D1 /* Info.plist */,
 				6B34BCCC27AA81650025A307 /* Constants.swift */,
