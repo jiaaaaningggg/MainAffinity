@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		601DAC7D27AB248400A801BC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 601DAC7C27AB248400A801BC /* FirebaseAuth */; };
 		601DAC7F27AB248400A801BC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 601DAC7E27AB248400A801BC /* FirebaseDatabase */; };
-		601DAC8527AB29D200A801BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601DAC8427AB29D200A801BC /* GoogleService-Info.plist */; };
+		601DAC8727AB2E8A00A801BC /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601DAC8627AB2E8A00A801BC /* DatabaseManager.swift */; };
+		601DAC8927AB3D9700A801BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601DAC8827AB3D9700A801BC /* GoogleService-Info.plist */; };
 		60C0432227AB16E6004B1510 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432127AB16E6004B1510 /* ConversationViewController.swift */; };
 		60C0432527AB1803004B1510 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432427AB1803004B1510 /* LoginViewController.swift */; };
 		60C0432827AB197D004B1510 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432727AB197D004B1510 /* RegisterViewController.swift */; };
@@ -31,7 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		601DAC8427AB29D200A801BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		601DAC8627AB2E8A00A801BC /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		601DAC8827AB3D9700A801BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		60C0432127AB16E6004B1510 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		60C0432427AB1803004B1510 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		60C0432727AB197D004B1510 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				F2AE275427AA7CD900B972D1 /* AppDelegate.swift */,
 				F2AE275627AA7CD900B972D1 /* SceneDelegate.swift */,
 				60C0432927AB1AF9004B1510 /* Extensions.swift */,
+				601DAC8627AB2E8A00A801BC /* DatabaseManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -144,7 +147,7 @@
 		F2AE275327AA7CD900B972D1 /* MainAffinity */ = {
 			isa = PBXGroup;
 			children = (
-				601DAC8427AB29D200A801BC /* GoogleService-Info.plist */,
+				601DAC8827AB3D9700A801BC /* GoogleService-Info.plist */,
 				6B34BCC927AA81190025A307 /* CoreData */,
 				60DD4D9727AA8509007512F8 /* Resources */,
 				60DD4D9C27AA85AB007512F8 /*  Controllers */,
@@ -224,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2AE276427AA7CDB00B972D1 /* LaunchScreen.storyboard in Resources */,
-				601DAC8527AB29D200A801BC /* GoogleService-Info.plist in Resources */,
+				601DAC8927AB3D9700A801BC /* GoogleService-Info.plist in Resources */,
 				F2AE276127AA7CDB00B972D1 /* Assets.xcassets in Resources */,
 				F2AE275C27AA7CD900B972D1 /* Main.storyboard in Resources */,
 			);
@@ -237,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601DAC8727AB2E8A00A801BC /* DatabaseManager.swift in Sources */,
 				6B34BCC727AA80E30025A307 /* Utilities.swift in Sources */,
 				F2AE275F27AA7CD900B972D1 /* MainAffinity.xcdatamodeld in Sources */,
 				60C0432227AB16E6004B1510 /* ConversationViewController.swift in Sources */,
