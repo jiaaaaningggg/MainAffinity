@@ -11,6 +11,9 @@
 		601DAC7F27AB248400A801BC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 601DAC7E27AB248400A801BC /* FirebaseDatabase */; };
 		601DAC8727AB2E8A00A801BC /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601DAC8627AB2E8A00A801BC /* DatabaseManager.swift */; };
 		601DAC8927AB3D9700A801BC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601DAC8827AB3D9700A801BC /* GoogleService-Info.plist */; };
+		601DAC8B27AB3F8100A801BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */; };
+		601DAC8E27AB622600A801BC /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 601DAC8D27AB622600A801BC /* MessageKit */; };
+		601DAC9127AB628700A801BC /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 601DAC9027AB628700A801BC /* JGProgressHUD */; };
 		60C0432227AB16E6004B1510 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432127AB16E6004B1510 /* ConversationViewController.swift */; };
 		60C0432527AB1803004B1510 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432427AB1803004B1510 /* LoginViewController.swift */; };
 		60C0432827AB197D004B1510 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432727AB197D004B1510 /* RegisterViewController.swift */; };
@@ -34,6 +37,7 @@
 /* Begin PBXFileReference section */
 		601DAC8627AB2E8A00A801BC /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		601DAC8827AB3D9700A801BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		60C0432127AB16E6004B1510 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		60C0432427AB1803004B1510 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		60C0432727AB197D004B1510 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				601DAC9127AB628700A801BC /* JGProgressHUD in Frameworks */,
+				601DAC8E27AB622600A801BC /* MessageKit in Frameworks */,
 				601DAC7F27AB248400A801BC /* FirebaseDatabase in Frameworks */,
 				601DAC7D27AB248400A801BC /* FirebaseAuth in Frameworks */,
 			);
@@ -107,6 +113,7 @@
 				F2AE276F27AAA0DB00B972D1 /* WalkthroughViewController.swift */,
 				F2AE277127AAA0F500B972D1 /* WalkthroughPageViewController.swift */,
 				60C0432127AB16E6004B1510 /* ConversationViewController.swift */,
+				601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */,
 			);
 			path = " Controllers";
 			sourceTree = "<group>";
@@ -180,6 +187,8 @@
 			packageProductDependencies = (
 				601DAC7C27AB248400A801BC /* FirebaseAuth */,
 				601DAC7E27AB248400A801BC /* FirebaseDatabase */,
+				601DAC8D27AB622600A801BC /* MessageKit */,
+				601DAC9027AB628700A801BC /* JGProgressHUD */,
 			);
 			productName = MainAffinity;
 			productReference = F2AE275127AA7CD900B972D1 /* MainAffinity.app */;
@@ -211,6 +220,8 @@
 			mainGroup = F2AE274827AA7CD900B972D1;
 			packageReferences = (
 				601DAC7B27AB248400A801BC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				601DAC8C27AB622500A801BC /* XCRemoteSwiftPackageReference "MessageKit" */,
+				601DAC8F27AB628700A801BC /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = F2AE275227AA7CD900B972D1 /* Products */;
 			projectDirPath = "";
@@ -247,6 +258,7 @@
 				F2AE275927AA7CD900B972D1 /* ViewController.swift in Sources */,
 				F2AE275527AA7CD900B972D1 /* AppDelegate.swift in Sources */,
 				F2AE277227AAA0F500B972D1 /* WalkthroughPageViewController.swift in Sources */,
+				601DAC8B27AB3F8100A801BC /* ProfileViewController.swift in Sources */,
 				6B34BCCB27AA81350025A307 /* UserController.swift in Sources */,
 				6B34BCC527AA7F6C0025A307 /* User.swift in Sources */,
 				F2AE276E27AAA0CC00B972D1 /* WalkthroughContentViewController.swift in Sources */,
@@ -487,6 +499,22 @@
 				version = 8.9.1;
 			};
 		};
+		601DAC8C27AB622500A801BC /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		601DAC8F27AB628700A801BC /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -499,6 +527,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 601DAC7B27AB248400A801BC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		601DAC8D27AB622600A801BC /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 601DAC8C27AB622500A801BC /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+		601DAC9027AB628700A801BC /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 601DAC8F27AB628700A801BC /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 
