@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="P82-dh-dyA">
             <objects>
                 <navigationController id="N8K-bM-5qw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="0wt-TE-21N"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="slider.horizontal.3" catalog="system" id="0wt-TE-21N"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="v4Y-Yi-dVU">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="383" y="-492"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="lpD-Og-Pu7">
             <objects>
                 <viewController id="NVb-Gc-YdL" customClass="ProfileViewController" customModule="MainAffinity" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                             <constraint firstItem="EZo-7L-YLn" firstAttribute="trailing" secondItem="7ll-92-EpM" secondAttribute="trailing" id="gMd-VK-SJx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="deX-Xp-Cdc"/>
+                    <navigationItem key="navigationItem" title="Settings" id="deX-Xp-Cdc"/>
                     <connections>
                         <outlet property="tableView" destination="7ll-92-EpM" id="5PH-X2-hHh"/>
                     </connections>
@@ -233,7 +233,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="YSn-3Y-qQv" kind="relationship" relationship="viewControllers" id="AEB-kH-yVL"/>
-                        <segue destination="N8K-bM-5qw" kind="relationship" relationship="viewControllers" id="cu3-3T-lEK"/>
+                        <segue destination="wmd-dK-84B" kind="relationship" relationship="viewControllers" id="xWE-dF-Loy"/>
+                        <segue destination="N8K-bM-5qw" kind="relationship" relationship="viewControllers" id="584-S6-e3z"/>
+                        <segue destination="Eng-ER-PEv" kind="relationship" relationship="viewControllers" id="FeO-ye-eQX"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSV-rY-X6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -244,7 +246,7 @@
         <scene sceneID="jS6-KP-YHo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YSn-3Y-qQv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" id="IlU-Ms-3sR"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="realtimetext" catalog="system" id="IlU-Ms-3sR"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="lus-Nv-Q0I">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -259,8 +261,42 @@
             </objects>
             <point key="canvasLocation" x="-823" y="-492"/>
         </scene>
+        <!--Requests-->
+        <scene sceneID="W8d-MR-uN8">
+            <objects>
+                <navigationController id="wmd-dK-84B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Requests" image="person.fill.questionmark" catalog="system" id="qv8-qJ-wrH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="GfU-dM-cer">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MrR-Zb-xc1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1033" y="-481"/>
+        </scene>
+        <!--Explore-->
+        <scene sceneID="imf-QD-5Bo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eng-ER-PEv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Explore" image="globe.americas.fill" catalog="system" id="lYy-uq-IUd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rC0-Iy-FoO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RjB-Vi-QPK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1754" y="-492"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="globe.americas.fill" catalog="system" width="128" height="121"/>
+        <image name="person.fill.questionmark" catalog="system" width="128" height="104"/>
+        <image name="realtimetext" catalog="system" width="128" height="89"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
