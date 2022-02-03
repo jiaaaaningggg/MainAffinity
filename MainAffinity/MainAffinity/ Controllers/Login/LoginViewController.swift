@@ -142,7 +142,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 strongSelf.spinner.dismiss()
 
             }
@@ -153,6 +153,9 @@ class LoginViewController: UIViewController {
             }
             
             let user = result.user
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            
             print("Logged in user")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
         })
