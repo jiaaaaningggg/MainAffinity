@@ -57,11 +57,11 @@ class ProfileViewController: UIViewController {
             imageView.layer.cornerRadius = imageView.width/2
             headerView.addSubview(imageView)
 
-            StorageManager.shared.downloadURL(for: path, completion: { [weak self] result in
+            StorageManager.shared.downloadURL(for: path, completion: { result in
                 switch result {
                 case .success(let url):
-                    //imageView.sd_setImage(with: url, completed: nil)
-                    self?.downloadImage(imageView: imageView, url: url)
+                    imageView.sd_setImage(with: url, completed: nil)
+                    //self?.downloadImage(imageView: imageView, url: url)
                 case .failure(let error):
                     print("Failed to get download url: \(error)")
                 }
