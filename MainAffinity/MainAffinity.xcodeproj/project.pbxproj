@@ -22,6 +22,7 @@
 		601DACA427ABB8E000A801BC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 601DACA327ABB8E000A801BC /* FirebaseAuth */; };
 		601DACA627ABB8E000A801BC /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 601DACA527ABB8E000A801BC /* FirebaseDatabase */; };
 		601DACA827ABB8E000A801BC /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 601DACA727ABB8E000A801BC /* FirebaseStorage */; };
+		601DACAA27ABD7F200A801BC /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601DACA927ABD7F200A801BC /* PhotoViewerViewController.swift */; };
 		60C0432227AB16E6004B1510 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432127AB16E6004B1510 /* ConversationViewController.swift */; };
 		60C0432527AB1803004B1510 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432427AB1803004B1510 /* LoginViewController.swift */; };
 		60C0432827AB197D004B1510 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C0432727AB197D004B1510 /* RegisterViewController.swift */; };
@@ -49,6 +50,7 @@
 		601DAC9C27ABACB100A801BC /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		601DAC9E27ABB2DC00A801BC /* NewConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewConversationViewController.swift; sourceTree = "<group>"; };
 		601DACA027ABB78100A801BC /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		601DACA927ABD7F200A801BC /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
 		60C0432127AB16E6004B1510 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		60C0432427AB1803004B1510 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		60C0432727AB197D004B1510 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */,
 				601DAC9C27ABACB100A801BC /* ChatViewController.swift */,
 				601DAC9E27ABB2DC00A801BC /* NewConversationViewController.swift */,
+				601DACA927ABD7F200A801BC /* PhotoViewerViewController.swift */,
 			);
 			path = " Controllers";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				60C0432A27AB1AF9004B1510 /* Extensions.swift in Sources */,
 				F2AE275727AA7CD900B972D1 /* SceneDelegate.swift in Sources */,
 				6B34BCCD27AA81650025A307 /* Constants.swift in Sources */,
+				601DACAA27ABD7F200A801BC /* PhotoViewerViewController.swift in Sources */,
 				60C0432527AB1803004B1510 /* LoginViewController.swift in Sources */,
 				601DAC9D27ABACB100A801BC /* ChatViewController.swift in Sources */,
 				F2AE277027AAA0DB00B972D1 /* WalkthroughViewController.swift in Sources */,
