@@ -12,7 +12,7 @@ class NewConversationViewController: UIViewController {
     
     public var completion: (([String: String]) -> (Void))?
     
-    private let spinner = JGProgressHUD()
+    private let spinner = JGProgressHUD(style: .dark)
     
     private var users = [[String: String]]()
     
@@ -130,7 +130,7 @@ extension NewConversationViewController: UISearchBarDelegate{
                     self?.users = usersCollection
                     self?.filterUsers(with: query)
                 case .failure(let error):
-                    print("Failed to get usres: \(error)")
+                    print("Failed to get users: \(error)")
                 }
             })
         }
