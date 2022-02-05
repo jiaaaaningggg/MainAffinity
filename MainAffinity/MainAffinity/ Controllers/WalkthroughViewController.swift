@@ -32,6 +32,7 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
     @IBAction func skipButtonTapped(sender: UIButton) {
         UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
         dismiss(animated: true, completion: nil)
+        redirectToLoginView()
     }
     
     @IBAction func nextButtonTapped(sender: UIButton) {
@@ -42,7 +43,8 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
                 
             case 2:
                 UserDefaults.standard.set(true, forKey: "hasViewedWalkthrough")
-                dismiss(animated: true, completion: nil)
+                redirectToLoginView()
+                //dismiss(animated: true, completion: nil)
                 
             default: break
             }
@@ -62,6 +64,7 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
                 nextButton.setTitle("GET STARTED", for: .normal)
                 skipButton.isHidden = true
                 
+                
             default: break
             }
             
@@ -72,7 +75,13 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
     func didUpdatePageIndex(currentIndex: Int) {
         updateUI()
     }
-    
+    func redirectToLoginView(){
+        let registerVC = RegisterViewController()
+        
+        
+        self.present(registerVC, animated: true, completion: nil)
+        registerVC.modalPresentationStyle = .fullScreen
+    }
     // MARK: - View controller life cycle
 
     override func viewDidLoad() {

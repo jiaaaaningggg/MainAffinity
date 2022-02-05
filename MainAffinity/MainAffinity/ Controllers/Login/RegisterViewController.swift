@@ -8,9 +8,10 @@
 import UIKit
 import FirebaseAuth
 import JGProgressHUD
-
+import FirebaseFirestore
 class RegisterViewController: UIViewController {
-    
+    var newDocumentID:String = "" //pass document id to Profile setup View Controller
+
     private let spinner = JGProgressHUD(style: .dark)
     
     private let scrollView: UIScrollView = {
@@ -19,16 +20,7 @@ class RegisterViewController: UIViewController {
             return scrollView
         }()
 
-        private let imageView: UIImageView = {
-            let imageView = UIImageView()
-            imageView.image = UIImage(systemName: "person.circle")
-            imageView.tintColor = .gray
-            imageView.contentMode = .scaleAspectFit
-            imageView.layer.masksToBounds = true
-            imageView.layer.borderWidth = 2
-            imageView.layer.borderColor = UIColor.lightGray.cgColor
-            return imageView
-        }()
+      
 
         private let firstNameField: UITextField = {
             let field = UITextField()
@@ -123,19 +115,16 @@ class RegisterViewController: UIViewController {
         
         // Add subviews
         view.addSubview(scrollView)
-        scrollView.addSubview(imageView)
+
         scrollView.addSubview(firstNameField)
         scrollView.addSubview(lastNameField)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(registerButton)
 
-        imageView.isUserInteractionEnabled = true
         scrollView.isUserInteractionEnabled = true
 
-        let gesture = UITapGestureRecognizer(target: self,
-                                             action: #selector(didTapChangeProfilePic))
-        imageView.addGestureRecognizer(gesture)
+    
     }
     
     @objc private func didTapChangeProfilePic() {
@@ -147,15 +136,12 @@ class RegisterViewController: UIViewController {
         scrollView.frame = view.bounds
 
         let size = scrollView.width/3
-        imageView.frame = CGRect(x: (scrollView.width-size)/2,
-                                 y: 20,
-                                 width: size,
-                                 height: size)
+    
 
-        imageView.layer.cornerRadius = imageView.width/2.0
+        
 
         firstNameField.frame = CGRect(x: 30,
-                                  y: imageView.bottom+10,
+                                  y: 100,
                                   width: scrollView.width-60,
                                   height: 52)
         lastNameField.frame = CGRect(x: 30,
@@ -223,31 +209,51 @@ class RegisterViewController: UIViewController {
             }
             
             let chatUser = ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email)
-            DatabaseManager.shared.insertUser(with: chatUser, completion: {success in
-                if success {
-                    //upload image
-                    guard let image = strongSelf.imageView.image, let data = image.pngData() else{
-                        return
-                    }
-                    let fileName = chatUser.profilePictureFileName
-                    StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName, completion: { result in
-                        switch result {
-                        case .success(let downloadUrl):
-                            UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
-                            print(downloadUrl)
-                        case .failure(let error):
-                            print("Storage manager error: \(error)")
-                        }
-                    })
+//            DatabaseManager.shared.insertUser(with: chatUser, completion: {success in
+//                if success {
+//                    //upload image
+//                    guard let image = strongSelf.imageView.image, let data = image.pngData() else{
+//                        return
+//                    }
+//                    let fileName = chatUser.profilePictureFileName
+//                    StorageManager.shared.uploadProfilePicture(with: data, fileName: fileName, completion: { result in
+//                        switch result {
+//                        case .success(let downloadUrl):
+//                            UserDefaults.standard.set(downloadUrl, forKey: "profile_picture_url")
+//                            print(downloadUrl)
+//                        case .failure(let error):
+//                            print("Storage manager error: \(error)")
+//                        }
+//                    })
+//                }
+//            })
+            let db = Firestore.firestore()
+            let newDocument = db.collection("users").document()
+            self!.newDocumentID = newDocument.documentID
+            newDocument.setData(["firstname":firstName, "lastname":lastName, "uid": authResult!.user.uid ]){ (error) in
+                if error != nil {
+                    // Show error message
+                    print(error?.localizedDescription )
+                    
                 }
-            })
+            }
             
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let profileSetupViewController = storyboard.instantiateViewController(identifier: "ProfileSetupVC") as? ProfileSetupViewController
+            profileSetupViewController?.userEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            profileSetupViewController?.userName = firstName.trimmingCharacters(in: .whitespacesAndNewlines) + " " + lastName.trimmingCharacters(in: .whitespacesAndNewlines)
+            profileSetupViewController?.referenceDocId = self!.newDocumentID
+            self!.present(profileSetupViewController ?? UIViewController(), animated: true, completion: nil)
+            profileSetupViewController?.modalPresentationStyle = .fullScreen
+            
         })
     })
     }
     
+   
     func alertUserLoginError(message: String = "Please enter all information to create a new account.") {
         let alert = UIAlertController(title: "Enter info",
                                       message: message,
@@ -280,7 +286,7 @@ class RegisterViewController: UIViewController {
     }
     
     @objc private func didTapRegister() {
-        let vc = RegisterViewController()
+        var vc = RegisterViewController()
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -347,14 +353,7 @@ extension RegisterViewController: UIImagePickerControllerDelegate, UINavigationC
         present(vc, animated: true)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
-            return
-        }
-
-        self.imageView.image = selectedImage
-    }
+    
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)

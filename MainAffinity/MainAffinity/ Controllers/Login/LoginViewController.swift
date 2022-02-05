@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import FirebaseAuth
 import JGProgressHUD
 
@@ -67,12 +68,24 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = .systemFont(ofSize: 20, weight: .bold)
         return button
     }()
-
+    
+   
+    private let navBar : UINavigationBar = {
+        let bar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIView().frame.size.width, height: 44))
+        return bar
+                                  
+    }()
+    private let navItem = UINavigationItem(title: "Login")
+    private let registerButtonItem : UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(title: "Register",style: .done, target: self, action: #selector(didTapRegister))
+        return barButtonItem
+    }()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "Log In"
+        self.title = "Log In"
                 view.backgroundColor = .systemBackground
 
                 navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register",
@@ -89,12 +102,21 @@ class LoginViewController: UIViewController {
         emailField.delegate = self
         passwordField.delegate = self
         
+        view.addSubview(navBar)
+        navItem.rightBarButtonItem = registerButtonItem
+        navItem.title = self.title
+        
+        navBar.setItems([self.navItem], animated: true)
         // Adding subviews
         view.addSubview(scrollView)
+//
+//
         scrollView.addSubview(imageView)
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -158,6 +180,7 @@ class LoginViewController: UIViewController {
             
             print("Logged in user")
             strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            
         })
     }
         
