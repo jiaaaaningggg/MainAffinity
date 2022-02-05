@@ -99,6 +99,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		601DACF627AEBD4D00A801BC /* removable */ = {
+			isa = PBXGroup;
+			children = (
+				60C0432127AB16E6004B1510 /* ConversationViewController.swift */,
+				601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */,
+				601DAC9E27ABB2DC00A801BC /* NewConversationViewController.swift */,
+				601DACA927ABD7F200A801BC /* PhotoViewerViewController.swift */,
+				601DAC9C27ABACB100A801BC /* ChatViewController.swift */,
+			);
+			path = removable;
+			sourceTree = "<group>";
+		};
 		60C0432627AB196D004B1510 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,18 +144,14 @@
 		60DD4D9C27AA85AB007512F8 /*  Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				601DACF627AEBD4D00A801BC /* removable */,
 				F2AE275827AA7CD900B972D1 /* ViewController.swift */,
 				60C0432627AB196D004B1510 /* Login */,
 				F2AE276D27AAA0CC00B972D1 /* WalkthroughContentViewController.swift */,
 				F2AE276F27AAA0DB00B972D1 /* WalkthroughViewController.swift */,
 				F2AE277127AAA0F500B972D1 /* WalkthroughPageViewController.swift */,
-				60C0432127AB16E6004B1510 /* ConversationViewController.swift */,
 				6B83435A27ACEE78008CEE63 /* ProfileSetupViewController.swift */,
 				6B83435C27ACEE97008CEE63 /* ImageViewController.swift */,
-				601DAC8A27AB3F8100A801BC /* ProfileViewController.swift */,
-				601DAC9C27ABACB100A801BC /* ChatViewController.swift */,
-				601DAC9E27ABB2DC00A801BC /* NewConversationViewController.swift */,
-				601DACA927ABD7F200A801BC /* PhotoViewerViewController.swift */,
 			);
 			path = " Controllers";
 			sourceTree = "<group>";
