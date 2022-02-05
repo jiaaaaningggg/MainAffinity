@@ -29,6 +29,7 @@ extension DatabaseManager {
     public func userExists(with email: String,
                            completion: @escaping ((Bool) -> Void)) {
 
+        /*
         var safeEmail = email.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
@@ -39,6 +40,17 @@ extension DatabaseManager {
 
             completion(true)
         })
+         */
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+                database.child(safeEmail).observeSingleEvent(of: .value, with: { snapshot in
+                    guard snapshot.value as? [String: Any] != nil else {
+                        completion(false)
+                        return
+                    }
+
+                    completion(true)
+                })
+
 
     }
     
@@ -145,45 +157,94 @@ extension DatabaseManager {
     
     //Creates a new conversation with target user email and first message sent
     public func createNewConversation(with otherUserEmail: String, firstMessage: Message, completion: @escaping (Bool)->Void){
+        
+    
+        
         guard let currentEmail = UserDefaults.standard.value(forKey: "email") as? String else {
                         return
                 }
-                let safeEmail = DatabaseManager.safeEmail(emailAddress: currentEmail)
+         
+        let safeEmail = DatabaseManager.safeEmail(emailAddress: currentEmail)
+        
+        let ref = database.child("\(safeEmail)")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard var userNode = snapshot.value as? [String: Any] else {
+                completion(false)
+                print("user not found")
+                return
+            }
+            
+            let messageDate = firstMessage.sentDate
+            let dateString = ChatViewController.dateFormatter.string(from: messageDate)
+            
+            var message = ""
 
-                let ref = database.child("\(safeEmail)")
-
-                ref.observeSingleEvent(of: .value, with: { [weak self] snapshot in
-                    guard var userNode = snapshot.value as? [String: Any] else {
+            switch firstMessage.kind {
+            case .text(let messageText):
+                message = messageText
+            case .attributedText(_):
+                break
+            case .photo(_):
+                break
+            case .video(_):
+                break
+            case .location(_):
+                break
+            case .emoji(_):
+                break
+            case .audio(_):
+                break
+            case .contact(_):
+                break
+            case .custom(_), .linkPreview(_):
+                break
+            }
+            
+            let newConversationData: [String: Any] = [
+                "id": "conversation_\(firstMessage.messageId)",
+                "other_user_email": otherUserEmail,
+                "latest_message": [
+                    "date": dateString,
+                    "message": message,
+                    "is_read": false
+                ]
+            ]
+            
+            if var conversations = userNode["conversations"] as? [[String: Any]]{
+                conversations.append(newConversationData)
+                userNode["conversations"] = conversations
+                ref.setValue(userNode, withCompletionBlock: {
+                    error, _ in
+                    guard error == nil else{
                         completion(false)
-                        print("user not found")
                         return
                     }
-
-                    let messageDate = firstMessage.sentDate
-                    let dateString = ChatViewController.dateFormatter.string(from: messageDate)
-
-                    var message = ""
-
-                    switch firstMessage.kind {
-                    case .text(let messageText):
-                        message = messageText
-                    case .attributedText(_):
-                        break
-                    case .photo(_):
-                        break
-                    case .video(_):
-                        break
-                    case .location(_):
-                        break
-                    case .emoji(_):
-                        break
-                    case .audio(_):
-                        break
-                    case .contact(_):
-                        break
-                    case .custom(_), .linkPreview(_):
-                        break
+                    completion(true)
+                })
+            }
+            
+            else{
+                userNode["conversations"] = [
+                    newConversationData
+                ]
+                
+                ref.setValue(userNode, withCompletionBlock: {
+                    error, _ in
+                    guard error == nil else{
+                        completion(false)
+                        return
                     }
+                    completion(true)
+                })
+            }
+        })
+    }
+
+                    /*
+                    
+
+                    
 
                     let conversationId = "conversation_\(firstMessage.messageId)"
 
@@ -264,8 +325,10 @@ extension DatabaseManager {
                     }
                 })
             }
+    */
     
-    private func finishCreatingConversation(conversationID: String, firstMessage: Message, completion: @escaping (Bool)-> Void)
+     
+     private func finishCreatingConversation(conversationID: String, firstMessage: Message, completion: @escaping (Bool)-> Void)
     {
         //            "id": String,
         //            "type": text, photo, video,
@@ -327,6 +390,7 @@ extension DatabaseManager {
             completion(true)
         })
     }
+     
     
     
     

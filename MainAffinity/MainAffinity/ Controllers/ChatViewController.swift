@@ -110,10 +110,14 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             let messageId = createMessageId() else {
                 return
             }
-    
+        print("Sending: \(text)")
         
         if isNewConversation {
-            let message = Message(sender: selfSender, messageId: messageId, sentDate: Date(), kind: .text(text))
+            
+            let message = Message(sender: selfSender,
+                                  messageId: messageId,
+                                  sentDate: Date(),
+                                  kind: .text(text))
             DatabaseManager.shared.createNewConversation(with: otherUserEmail, firstMessage: message, completion: { success in
             if success {
                 print("message sent")
@@ -122,6 +126,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                 print("No sent")
             }
         })
+             
         }
 
         else{
@@ -136,7 +141,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             return nil
         }
         
-        let safeCurrentEmail = DatabaseManager.safeEmail(emailAddress: currentUserEmail)
+        //let safeCurrentEmail = DatabaseManager.safeEmail(emailAddress: currentUserEmail)
         
         let dateString = Self.dateFormatter.string(from: Date())
         let newIdentifier = "\(otherUserEmail)_\(currentUserEmail)_\(dateString)"
@@ -150,6 +155,7 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         if let sender = selfSender {
             return sender
         }
+        fatalError("Self sender is nil, email should be cached")
         return Sender(photoURL: "", senderId: "12", displayName: "")
     }
 

@@ -45,7 +45,6 @@ class ConversationViewController: UIViewController {
     @objc private func didTapComposeButton(){
         let vc = NewConversationViewController()
         vc.completion = {result in
-            print("\(result)")
             self.createNewConversation(result: result)
         }
         let navVC = UINavigationController(rootViewController: vc)
@@ -53,6 +52,7 @@ class ConversationViewController: UIViewController {
     }
     
     private func createNewConversation(result: [String: String]) {
+
         guard let name = result["name"],
               let email = result["email"] else{
                   return
