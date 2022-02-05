@@ -11,7 +11,19 @@ import CoreLocation
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
-class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate{
+class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UITextViewDelegate,CLLocationManagerDelegate{
+    //map, corelocation delegate functions
+    let locationDelegate = LocationDelegate()
+    var currentLocation:CLLocation? = nil
+    
+    let locationManager: CLLocationManager = {
+        $0.requestWhenInUseAuthorization()
+        $0.desiredAccuracy = kCLLocationAccuracyKilometer
+        $0.startUpdatingLocation()
+        $0.startUpdatingHeading()
+        return $0
+    }(CLLocationManager())
+    
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     //data passed from SignUpVC
     var userEmail = String()
@@ -64,7 +76,7 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
     @IBOutlet weak var CreateProfileBtnOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        locationManager.delegate = locationDelegate
         //autofill user name
         NameFld.text = userName
         //set placeholder profile avatar
@@ -369,17 +381,16 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
     @IBAction func createProfileBtn(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "DD/MM/YYYY"
-        let newLocation = CLLocation()
         
         
-        let newUser = User(name: NameFld.text!, contactNo: mobileFld.text!, dob: dateFormatter.date(from:dobFld.text!)! , nationality:nationalityFld.text!, language: languageFld.text!, gender: GenderFld.text!, emailAddr: userEmail, institution: institutionFld.text ?? nil, bio: BioFld.text!, location: newLocation, occupation: occupationFld.text ?? nil,image: profileImageView.image!)
+        let newUser = User(name: NameFld.text!, contactNo: mobileFld.text!, dob: dateFormatter.date(from:dobFld.text!)! , nationality:nationalityFld.text!, language: languageFld.text!, gender: GenderFld.text!, emailAddr: userEmail, institution: institutionFld.text ?? nil, bio: BioFld.text!, location: locationManager.location!, occupation: occupationFld.text ?? nil,image: profileImageView.image!)
         //1. add User profile to coredata
         userController.addNewUser(newUser: newUser)
         //2.add User profile to firebase
         let db = Firestore.firestore()
     
         
-        let values : Dictionary<String,Any> = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"institution":newUser.institution ?? nil,"occupation":newUser.occupation ?? nil,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":0.00,"currentLongitude":0.00]
+        let values : Dictionary<String,Any> = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"institution":newUser.institution ?? nil,"occupation":newUser.occupation ?? nil,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude]
         //upload image to firebase storage
         db.collection("users").document(referenceDocId).setData(values)
         let storageRef = Storage.storage().reference(withPath: "images/\(newUser.name).jpg")
@@ -400,20 +411,7 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         self.present(vc!, animated: true, completion: nil)
         
     }
-    func retrieveProfileImage(userImageName:String) -> UIImage{
-        var profileImage:UIImage?
-        let storageRef = Storage.storage().reference(withPath: "images/\(userImageName).jpg")
-        storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { data,error in
-            if let error = error {
-                print("Error retrieving Image: \(error.localizedDescription)")
-                
-            }
-            else{
-                profileImage = UIImage(data: data!)!
-            }
-        })
-        return profileImage!
-    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         BioFld.text = nil
         BioFld.textColor = UIColor.black

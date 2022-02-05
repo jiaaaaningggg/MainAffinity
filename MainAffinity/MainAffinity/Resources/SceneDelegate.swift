@@ -6,11 +6,13 @@
 //
 
 import UIKit
-
+import CoreData
+@available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    
+    let userController = UserController()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -18,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let _ = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: scene as! UIWindowScene)
+
         //var rootViewController = UIApplication.window!.rootViewController
         // check whether User is a first-timer
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -26,12 +29,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootViewController = storyboard.instantiateViewController(withIdentifier: "WalkthroughViewController") as? WalkthroughViewController
             
         }
-        else if (UserDefaults.standard.string(forKey: "email") != nil){//if user has logged in
+        else if (userController.getUser() != nil) {//if user has logged in
             rootViewController = storyboard.instantiateInitialViewController()
             
+            
+            //2nd condition : UserDefaults.standard.string(forKey: "email") != nil
         }
         else{ //user has signed out
-            rootViewController = LoginViewController()
+            //rootViewController = LoginViewController()
+            
+            rootViewController = storyboard.instantiateViewController(withIdentifier: "SwipingVC")
+            
         }
         self.window!.rootViewController = rootViewController!
         self.window!.makeKeyAndVisible()

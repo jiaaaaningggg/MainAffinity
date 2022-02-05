@@ -34,6 +34,9 @@
 		6B83435B27ACEE78008CEE63 /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83435A27ACEE78008CEE63 /* ProfileSetupViewController.swift */; };
 		6B83435D27ACEE97008CEE63 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83435C27ACEE97008CEE63 /* ImageViewController.swift */; };
 		6B83436027ACF30B008CEE63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6B83435F27ACF30B008CEE63 /* FirebaseFirestore */; };
+		6B85E96827AEAEC600A5D2C4 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85E96727AEAEC600A5D2C4 /* LocationDelegate.swift */; };
+		6B85E96A27AEAF5D00A5D2C4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B85E96927AEAF5D00A5D2C4 /* CoreLocation.framework */; };
+		6B85E96C27AEE14400A5D2C4 /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85E96B27AEE14400A5D2C4 /* SwipingViewController.swift */; };
 		F2AE275527AA7CD900B972D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE275427AA7CD900B972D1 /* AppDelegate.swift */; };
 		F2AE275727AA7CD900B972D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE275627AA7CD900B972D1 /* SceneDelegate.swift */; };
 		F2AE275927AA7CD900B972D1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AE275827AA7CD900B972D1 /* ViewController.swift */; };
@@ -64,6 +67,9 @@
 		6B83435827ACE6D2008CEE63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B83435A27ACEE78008CEE63 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		6B83435C27ACEE97008CEE63 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		6B85E96727AEAEC600A5D2C4 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
+		6B85E96927AEAF5D00A5D2C4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6B85E96B27AEE14400A5D2C4 /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		F2AE275127AA7CD900B972D1 /* MainAffinity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MainAffinity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2AE275427AA7CD900B972D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2AE275627AA7CD900B972D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B85E96A27AEAF5D00A5D2C4 /* CoreLocation.framework in Frameworks */,
 				601DAC9627AB66F000A801BC /* RealmSwift in Frameworks */,
 				601DAC9127AB628700A801BC /* JGProgressHUD in Frameworks */,
 				601DACA827ABB8E000A801BC /* FirebaseStorage in Frameworks */,
@@ -168,6 +175,7 @@
 		6B83435E27ACF30B008CEE63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B85E96927AEAF5D00A5D2C4 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +210,8 @@
 				6B34BCCC27AA81650025A307 /* Constants.swift */,
 				6B34BCC627AA80E30025A307 /* Utilities.swift */,
 				F2AE275D27AA7CD900B972D1 /* MainAffinity.xcdatamodeld */,
+				6B85E96727AEAEC600A5D2C4 /* LocationDelegate.swift */,
+				6B85E96B27AEE14400A5D2C4 /* SwipingViewController.swift */,
 			);
 			path = MainAffinity;
 			sourceTree = "<group>";
@@ -310,6 +320,7 @@
 				601DAC8B27AB3F8100A801BC /* ProfileViewController.swift in Sources */,
 				6B34BCCB27AA81350025A307 /* UserController.swift in Sources */,
 				601DAC9F27ABB2DC00A801BC /* NewConversationViewController.swift in Sources */,
+				6B85E96827AEAEC600A5D2C4 /* LocationDelegate.swift in Sources */,
 				6B34BCC527AA7F6C0025A307 /* User.swift in Sources */,
 				F2AE276E27AAA0CC00B972D1 /* WalkthroughContentViewController.swift in Sources */,
 				60C0432827AB197D004B1510 /* RegisterViewController.swift in Sources */,
@@ -319,6 +330,7 @@
 				601DACAA27ABD7F200A801BC /* PhotoViewerViewController.swift in Sources */,
 				60C0432527AB1803004B1510 /* LoginViewController.swift in Sources */,
 				601DAC9D27ABACB100A801BC /* ChatViewController.swift in Sources */,
+				6B85E96C27AEE14400A5D2C4 /* SwipingViewController.swift in Sources */,
 				F2AE277027AAA0DB00B972D1 /* WalkthroughViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,16 +478,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4CK64QDXA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MainAffinity/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_CFBundleDisplayName = Affinity;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMainNibFile = LaunchScreen;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,16 +512,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4CK64QDXA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MainAffinity/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take a profile picture";
+				INFOPLIST_KEY_CFBundleDisplayName = Affinity;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
+				INFOPLIST_KEY_NSMainNibFile = LaunchScreen;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo for your profile.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

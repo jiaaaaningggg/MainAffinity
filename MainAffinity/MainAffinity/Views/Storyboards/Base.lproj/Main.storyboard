@@ -57,6 +57,34 @@
             </objects>
             <point key="canvasLocation" x="383" y="278"/>
         </scene>
+        <!--Swiping View Controller-->
+        <scene sceneID="Tf0-Oq-8QF">
+            <objects>
+                <viewController storyboardIdentifier="SwipingVC" id="9kh-rw-ZBl" customClass="SwipingViewController" customModule="MainAffinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qrh-Yb-m9o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Swiping Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-lo-kG3">
+                                <rect key="frame" x="148" y="467" width="118" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tkz-tJ-ogD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eRq-lo-kG3" firstAttribute="centerX" secondItem="tkz-tJ-ogD" secondAttribute="centerX" id="9eK-st-Ruy"/>
+                            <constraint firstItem="eRq-lo-kG3" firstAttribute="centerY" secondItem="tkz-tJ-ogD" secondAttribute="centerY" id="aOT-5Q-HXI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gUV-Q9-hqF"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lo2-H8-fnn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2361" y="278"/>
+        </scene>
         <!--Chats-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -287,6 +315,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9kh-rw-ZBl" kind="relationship" relationship="rootViewController" id="bkF-eO-XQV"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjB-Vi-QPK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

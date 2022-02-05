@@ -28,7 +28,7 @@ class User{
     var maxAgeFilter: Int
     var occupation:String?
     var bio :String?
-   
+    
     init(name:String,contactNo:String,dob:Date,nationality:String,language:String,gender:String,emailAddr:String,institution:String?,bio:String?,location:CLLocation,occupation:String?,image:UIImage){
         self.name = name.trimmingCharacters(in: .whitespacesAndNewlines)
         self.contactNo = contactNo.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -40,11 +40,11 @@ class User{
         self.bio = bio 
         self.isOnline = nil
         self.lastActiveTime = nil
-        self.maxAgeFilter = 0
-        self.minAgeFilter = 100
+        self.maxAgeFilter = 100
+        self.minAgeFilter = 0
         self.occupation = occupation ?? nil
-        self.currentLongitude = location.coordinate.latitude
-        self.currentLatitude = location.coordinate.longitude
+        self.currentLongitude = location.coordinate.longitude
+        self.currentLatitude = location.coordinate.latitude
         switch gender{         //1 : Male 0: Female
         case "Male":
             self.gender = "M"
