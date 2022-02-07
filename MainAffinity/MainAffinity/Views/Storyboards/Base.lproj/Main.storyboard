@@ -24,7 +24,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsQ-Pt-H4n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="383" y="-492"/>
+            <point key="canvasLocation" x="155" y="-492"/>
         </scene>
         <!--Settings-->
         <scene sceneID="lpD-Og-Pu7">
@@ -265,6 +265,7 @@
                         <segue destination="wmd-dK-84B" kind="relationship" relationship="viewControllers" id="xWE-dF-Loy"/>
                         <segue destination="N8K-bM-5qw" kind="relationship" relationship="viewControllers" id="584-S6-e3z"/>
                         <segue destination="Eng-ER-PEv" kind="relationship" relationship="viewControllers" id="FeO-ye-eQX"/>
+                        <segue destination="7h6-QD-PQo" kind="relationship" relationship="viewControllers" id="6E4-nB-twA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSV-rY-X6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -302,7 +303,37 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrR-Zb-xc1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1033" y="-481"/>
+            <point key="canvasLocation" x="990" y="-481"/>
+        </scene>
+        <!--Dating Map View Controller-->
+        <scene sceneID="KhL-tg-5mv">
+            <objects>
+                <viewController id="YdG-NP-UoI" customClass="DatingMapViewController" customModule="MainAffinity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="La6-E9-mQD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="9zA-SR-G0M">
+                                <rect key="frame" x="0.0" y="101" width="414" height="695"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rol-a4-dJ9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9zA-SR-G0M" firstAttribute="top" secondItem="La6-E9-mQD" secondAttribute="top" constant="62" id="C2b-lX-Uke"/>
+                            <constraint firstAttribute="bottom" secondItem="9zA-SR-G0M" secondAttribute="bottom" constant="61" id="O4u-lP-pPH"/>
+                            <constraint firstItem="9zA-SR-G0M" firstAttribute="trailing" secondItem="Rol-a4-dJ9" secondAttribute="trailing" id="UDk-Yk-k1S"/>
+                            <constraint firstItem="9zA-SR-G0M" firstAttribute="leading" secondItem="Rol-a4-dJ9" secondAttribute="leading" id="Uju-uH-rZh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="0cN-21-zCy"/>
+                    <connections>
+                        <outlet property="mapView" destination="9zA-SR-G0M" id="Jgi-Bu-Qw0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfT-aW-nAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1805.7971014492755" y="277.90178571428572"/>
         </scene>
         <!--Explore-->
         <scene sceneID="imf-QD-5Bo">
@@ -613,7 +644,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1LY-Jd-pRR" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5533.3333333333339" y="-91.071428571428569"/>
+            <point key="canvasLocation" x="6443.4782608695659" y="-91.071428571428569"/>
         </scene>
         <!--Profile Image-->
         <scene sceneID="Qc0-zb-AZd">
@@ -690,7 +721,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaT-HV-8Em" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4600" y="323.4375"/>
+            <point key="canvasLocation" x="5508.6956521739139" y="323.4375"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="TA4-be-edn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7h6-QD-PQo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="hFc-ya-UsA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="wzn-ia-b5e">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YdG-NP-UoI" kind="relationship" relationship="rootViewController" id="sFa-To-hvJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ayH-aH-Sej" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807" y="-481"/>
         </scene>
     </scenes>
     <resources>

@@ -77,9 +77,6 @@ class WalkthroughViewController: UIViewController, WalkthroughPageViewController
     }
     func redirectToLoginView(){
         let registerVC = RegisterViewController()
-  
-        let nav = UINavigationController(rootViewController: registerVC)
-        nav.modalPresentationStyle = .fullScreen
         
         self.present(registerVC, animated: true, completion: nil)
         registerVC.modalPresentationStyle = .fullScreen
