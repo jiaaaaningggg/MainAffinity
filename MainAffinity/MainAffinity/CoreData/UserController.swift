@@ -43,7 +43,7 @@ class UserController {
             }
             else{
                 for document in (snapshot?.documents)!{
-                    //if (document.exists){
+                    
                         let name = document.data()["name"] as? String
                         let gender = document.data()["Gender"] as? String
                         let language = document.data()["Nationality"] as? String
@@ -67,18 +67,17 @@ class UserController {
                         }
                        
                         print("\(name!),\(age!),\(contactNo!)")
-                       // let profileImage = self.retrieveProfileImage(userImageName: name!)
+                       self.retrieveCurrentProfileImage(userImageName: name!)
                         loginUser = User(name: name!, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: loginEmail, institution: institution!, bio: bio!, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: UIImage())
-                        self.addNewUser(newUser: loginUser!)
+                        self.addNewUser(newUser: loginUser!) //add to coredata
                     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.currentUser = loginUser!
-                       userFound = true
-                    //}
+                    appDelegate.currentUser = loginUser! //add to local cache
+                       
+                    
                 }
             }
             
         }
-//        return userFound
 
     }
     func addNewUser(newUser:User){
@@ -143,7 +142,7 @@ class UserController {
             let dob = users[0].value(forKeyPath: "dateOfBirth") as? Date
             let latitude = users[0].value(forKeyPath: "currentLatitude") as? Double
             let longitude = users[0].value(forKeyPath: "currentLongitude") as? Double
-            //let profileImage = retrieveProfileImage(userImageName: name!)
+            
                 let location = CLLocation.init(latitude: latitude!, longitude: longitude!)
             
             let user = User(name: name!, contactNo: contactNo!, dob: dob!, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: email!, institution: nil, bio: bio!, location: location, occupation: nil, image: UIImage())
@@ -156,21 +155,41 @@ class UserController {
         }
         return nil
     }
-    func retrieveProfileImage(userImageName:String) -> UIImage{
-        var profileImage:UIImage?
+    func retrieveProfileImage(userImageName:String) -> Void{//get profile image of all dates from firestore
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         let storageRef = Storage.storage().reference(withPath: "images/\(userImageName).jpg")
         storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { data,error in
             if let error = error {
-                print("Error retrieving Image: \(error.localizedDescription)")
+                print("Error retrieving Image: \(error)")
                 
             }
             else{
                 if let data = data {
-                    profileImage = UIImage(data: data)
-                }
+                    let profileImage = UIImage(data: data)
+                    
+                    appDelegate.recommendationList.last!.image = profileImage //attach latest image to current user object
+                }//attach imageData to current user object
                 
             }
         })
-        return profileImage!
+       
+    }
+    func retrieveCurrentProfileImage(userImageName:String) -> Void{ //get profile image of current user from firestore
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let storageRef = Storage.storage().reference(withPath: "images/\(userImageName).jpg")
+        storageRef.getData(maxSize: 4 * 1024 * 1024, completion: { data,error in
+            if let error = error {
+                print("Error retrieving Image: \(error)")
+            }
+            else{
+                if let data = data {
+                    let profileImage = UIImage(data: data)
+                    appDelegate.currentUser?.image = profileImage
+                }
+            }
+        })
+       
     }
 }

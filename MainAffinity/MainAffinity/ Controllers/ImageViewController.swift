@@ -35,7 +35,6 @@ class ImageViewController: UIViewController,UINavigationControllerDelegate,UIIma
             present(alert, animated: true, completion: nil)
         }
         
-        
     }
     func chooseImageSource(source:String) -> UIImagePickerController{ //func for setting ImagePicker properties based on source
         let image = UIImagePickerController()
@@ -76,14 +75,12 @@ class ImageViewController: UIViewController,UINavigationControllerDelegate,UIIma
         else{
             showImageUploadErrorAlert()
         }
-            
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
-    
+ 
     func showImageUploadErrorAlert(){
         let errorMessage:String = "Error uploading Image. Please try again." //set alert messsage
         let alertTitle:String = "Image Uploading Error"

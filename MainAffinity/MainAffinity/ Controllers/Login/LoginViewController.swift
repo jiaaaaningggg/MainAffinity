@@ -19,7 +19,8 @@ import CoreData
 class LoginViewController: UIViewController {
     private let userController = UserController()
     private let spinner = JGProgressHUD(style: .dark)
-
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     private let scrollView: UIScrollView = {
 
         let scrollView = UIScrollView()
@@ -294,16 +295,10 @@ class LoginViewController: UIViewController {
 
             let user = result.user
 
-            
-            
-            //if(self!.userController.loginUser(loginEmail: email)){//check if coredata saving works
-                UserDefaults.standard.set(email, forKey: "email")
-                print("Logged in user")
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-            //}
-            //else{
-              //  self!.alertFirebaseProfileError()
-            //}
+            self!.userController.loginUser(loginEmail: email)
+            UserDefaults.standard.set(email, forKey: "email")
+            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+          
         })
 
     }
@@ -367,4 +362,7 @@ extension LoginViewController: UITextFieldDelegate {
 
     }
 
+}
+extension UIColor{
+    
 }

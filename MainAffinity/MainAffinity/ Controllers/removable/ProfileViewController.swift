@@ -16,7 +16,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     let userController = UserController()
-    let data = ["Log Out"]
+    let data = ["Log Out","Set Age Filter"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,13 +100,16 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = data[indexPath.row]
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = .red
+        if(indexPath.row == 1){
+            cell.textLabel?.textColor = .blue
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         //data[indexPath.row].handler?()
-        
+        if (indexPath.row == 1){
         let actionSheet = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { [weak self] _ in
             
@@ -130,7 +133,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         present(actionSheet, animated: true)
-        
-
+        }
+        if (indexPath.row == 2){
+            
+        }
     }
 }

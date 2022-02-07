@@ -32,6 +32,7 @@
 		6B34BCCB27AA81350025A307 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34BCCA27AA81350025A307 /* UserController.swift */; };
 		6B34BCCD27AA81650025A307 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B34BCCC27AA81650025A307 /* Constants.swift */; };
 		6B8080E527B120D2003BF1C2 /* TranslationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8080E427B120D2003BF1C2 /* TranslationController.swift */; };
+		6B8080E927B19DCD003BF1C2 /* AffinityLogo.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6B8080E827B19DCD003BF1C2 /* AffinityLogo.jpeg */; };
 		6B83435927ACE6D2008CEE63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B83435827ACE6D2008CEE63 /* GoogleService-Info.plist */; };
 		6B83435B27ACEE78008CEE63 /* ProfileSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83435A27ACEE78008CEE63 /* ProfileSetupViewController.swift */; };
 		6B83435D27ACEE97008CEE63 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B83435C27ACEE97008CEE63 /* ImageViewController.swift */; };
@@ -68,6 +69,7 @@
 		6B34BCCA27AA81350025A307 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		6B34BCCC27AA81650025A307 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6B8080E427B120D2003BF1C2 /* TranslationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationController.swift; sourceTree = "<group>"; };
+		6B8080E827B19DCD003BF1C2 /* AffinityLogo.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AffinityLogo.jpeg; sourceTree = "<group>"; };
 		6B83435827ACE6D2008CEE63 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B83435A27ACEE78008CEE63 /* ProfileSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSetupViewController.swift; sourceTree = "<group>"; };
 		6B83435C27ACEE97008CEE63 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		F2AE275327AA7CD900B972D1 /* MainAffinity */ = {
 			isa = PBXGroup;
 			children = (
+				6B8080E827B19DCD003BF1C2 /* AffinityLogo.jpeg */,
 				6B83435827ACE6D2008CEE63 /* GoogleService-Info.plist */,
 				6B34BCC927AA81190025A307 /* CoreData */,
 				60DD4D9727AA8509007512F8 /* Resources */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2AE276427AA7CDB00B972D1 /* LaunchScreen.storyboard in Resources */,
+				6B8080E927B19DCD003BF1C2 /* AffinityLogo.jpeg in Resources */,
 				6B83435927ACE6D2008CEE63 /* GoogleService-Info.plist in Resources */,
 				F2AE276127AA7CDB00B972D1 /* Assets.xcassets in Resources */,
 				F2AE275C27AA7CD900B972D1 /* Main.storyboard in Resources */,
@@ -494,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4CK64QDXA;
@@ -528,7 +532,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y4CK64QDXA;

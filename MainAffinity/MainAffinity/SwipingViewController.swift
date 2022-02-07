@@ -34,11 +34,11 @@ class SwipingViewController : UIViewController{
             default:
                 preferredGender = "F"
             }
-            datingList = generateDates(minimumAge: minimumAge, maximumAge: maximumAge, preferredGender: preferredGender!, currentLocation: currentLocation,email:email)
+            generateDates(minimumAge: minimumAge, maximumAge: maximumAge, preferredGender: preferredGender!, currentLocation: currentLocation,email:email) //generate list of Dating profiles for the User
         }
     }
-    func generateDates(minimumAge:Int,maximumAge:Int,preferredGender:String,currentLocation:CLLocation,email:String)-> [User]{
-        var datingList:[User] = []
+    func generateDates(minimumAge:Int,maximumAge:Int,preferredGender:String,currentLocation:CLLocation,email:String)-> Void{
+        
         let db = Firestore.firestore() // store the Firebase Instance
         
         let usersRef = db.collection("users") //specify the collection
@@ -48,10 +48,13 @@ class SwipingViewController : UIViewController{
         usersRef.whereField("email", isNotEqualTo:email)
             .getDocuments(){
             (querySnapshot, err) in
+                var appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
             if let error = err{
                 print ("Error fetching date profiles: \(error.localizedDescription)")
             }
             else{
+                
                 for documents in querySnapshot!.documents{ //loop through each document in the collection
                     var institution :String?
                     var occupation : String?
@@ -73,9 +76,11 @@ class SwipingViewController : UIViewController{
                     if(!(documents.value(forKeyPath: "institution") as! String).isEmpty){
                         institution = documents.value(forKeyPath: "institution") as? String
                     }
-                    profileImage = self.userController.retrieveProfileImage(userImageName: name)
-                    let dateProfile = User(name: name, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: email, institution: institution ?? nil, bio: bio, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: profileImage!)
-                    datingList.append(dateProfile)
+                    
+                   
+                    let dateProfile = User(name: name, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: email, institution: institution ?? nil, bio: bio, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: UIImage())
+                    appDelegate.recommendationList.append(dateProfile)
+                    self.userController.retrieveProfileImage(userImageName: name)
                 }
             }
         }

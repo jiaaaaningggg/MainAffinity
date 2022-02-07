@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Beige Watercolor Calligraphy Fashion Fashion Logo (2).svg",
+      "filename" : "Beige Watercolor Calligraphy Fashion Fashion Logo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Beige Watercolor Calligraphy Fashion Fashion Logo-1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Beige Watercolor Calligraphy Fashion Fashion Logo-2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

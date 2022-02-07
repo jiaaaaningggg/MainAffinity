@@ -18,7 +18,7 @@ class User{
     var currentLatitude : Double?
     var currentLongitude : Double?
     var gender : String?
-    var image: Data?
+    var image: UIImage?
     var age:Int?
     var email : String
     var institution : String?
@@ -57,19 +57,7 @@ class User{
         let calendar = Calendar.current
         let ageComponents = calendar.dateComponents([.year], from: dob, to: Date())
         self.age = ageComponents.year! //retrieve year difference from date differences
-        //check image format
-//        if(image.pngData() != nil){
-//            self.image = image.pngData()
-//        }
-//        else{
-//            self.image = image.jpegData(compressionQuality: 1.0)
-//        }
-        
-//        self.image =
-//        let assetPath = info[.imageURL] as! NSURL
-//        if(assetPath.absoluteString?.hasSuffix("jpeg"))!{
-//
-//        }
+
        
     }
 }

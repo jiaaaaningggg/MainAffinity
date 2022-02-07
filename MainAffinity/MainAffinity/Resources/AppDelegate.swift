@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var genderList : [String] = ["Male","Female"]
     var supportedLanguageList : [Languages] = [] //store the list of supported languages by google translate
     var currentUser : User?
+    var recommendationList: [User] = []
     //First
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -23,7 +24,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
+    enum Theme:String{
+        case Theme
+    }
+    static func storeTheme(theme:Theme){
+        UserDefaults.standard.set(theme.rawValue,forKey: "theme")
+        UserDefaults.standard.synchronize()
+    }
+    enum AssetsColor : String{
+        case background
+        case Title
+        case subTitle
+        case TabBar
+    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
