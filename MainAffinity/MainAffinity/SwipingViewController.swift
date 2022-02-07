@@ -84,8 +84,7 @@ class SwipingViewController : UIViewController{
                 }
             }
         }
-        print(datingList)
-        return datingList
+      
         
     }
 }
