@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var profileImage:UIImage? = UIImage()
     var genderList : [String] = ["Male","Female"]
+    var supportedLanguageList : [Languages] = [] //store the list of supported languages by google translate
+    var currentUser : User?
     //First
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()

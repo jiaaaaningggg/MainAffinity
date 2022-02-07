@@ -30,7 +30,9 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
     var userName = String()
     var referenceDocId = String()
     let userController = UserController()
+    let translationController = TranslationController()
     var countryList :[String] = []
+    
     var bioRecommendations:String? //dynamiclly built later
     let imagePlaceholder :UIImage = UIImage(systemName: "person.circle.fill")!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -60,9 +62,8 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
     private var datePickerFld:UIDatePicker?
     private var countryPicker = UIPickerView()
     private var genderPickerFld = UIPickerView()
-    
-    var hasValidImage:Bool = true
-//    var hasValidImage:Bool = false
+    private var languagePicker = UIPickerView()
+    var hasValidImage:Bool = false
     var hasValidName : Bool = false
     var hasValidMobileNo : Bool = false
     var hasValidDob : Bool = false
@@ -93,6 +94,9 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         //set tags for picker views
         genderPickerFld.tag = 2
         countryPicker.tag = 3
+        languagePicker.tag = 4
+        //add all translate support languages to pickerview list
+        translationController.getAllTranslationLanguages()
         
         //configure avatar imageView constraints
         profileImageView.layer.masksToBounds = true
@@ -102,7 +106,9 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
             profileImageView.image = appDelegate?.profileImage!
         }
        
-        
+        //set pickerview for Language field
+        languagePicker.dataSource = self
+        languagePicker.delegate = self
         //set pickerview for Nationality Field
         countryPicker.delegate = self
         countryPicker.dataSource = self
@@ -112,7 +118,7 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         datePickerFld = UIDatePicker()
         datePickerFld?.datePickerMode = .date
         datePickerFld?.addTarget(self, action: #selector(self.dateChanged(datePicker:)), for: .valueChanged)
-        
+        languageFld.inputView = languagePicker
          
         
         let tapGesture = UIGestureRecognizer(target: self, action:#selector (self.viewTapped(gestureRecognizer:))) //for interactions when only touch is made with no date input
@@ -468,6 +474,9 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         else if (pickerView.tag == 3){
             return self.countryList.count
         }
+        else if (pickerView.tag == 4){
+            return appDelegate!.supportedLanguageList.count
+        }
         return 0
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -476,6 +485,10 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         }
         else if (pickerView.tag == 3){
         return self.countryList[row]
+        }
+        else if (pickerView.tag == 4){
+            let languageOption = appDelegate!.supportedLanguageList[row]
+            return languageOption.name
         }
         return nil
     }
@@ -486,6 +499,9 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         }
         else if (pickerView.tag == 3){
             nationalityFld.text = countryList[row]
+        }
+        else if (pickerView.tag == 4){
+            languageFld.text = (appDelegate!.supportedLanguageList[row]).name
         }
     }
     

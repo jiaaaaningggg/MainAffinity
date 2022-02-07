@@ -19,7 +19,7 @@ import CoreData
 class LoginViewController: UIViewController {
     private let userController = UserController()
     private let spinner = JGProgressHUD(style: .dark)
-
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let scrollView: UIScrollView = {
 
         let scrollView = UIScrollView()
@@ -146,7 +146,7 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
 
-//        self.title = "Log In"
+        self.title = "Log In"
 
                 view.backgroundColor = .systemBackground
 
@@ -295,15 +295,12 @@ class LoginViewController: UIViewController {
             let user = result.user
 
             
+            self!.userController.loginUser(loginEmail: email)
             
-            if(self!.userController.loginUser(loginEmail: email)){//check if coredata saving works
                 UserDefaults.standard.set(email, forKey: "email")
-                print("Logged in user")
-                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-            }
-            else{
-                self!.alertFirebaseProfileError()
-            }
+                
+               strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+           
         })
 
     }

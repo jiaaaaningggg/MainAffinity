@@ -41,7 +41,7 @@ class User{
         self.isOnline = nil
         self.lastActiveTime = nil
         self.maxAgeFilter = 100
-        self.minAgeFilter = 0
+        self.minAgeFilter = 18
         self.occupation = occupation ?? nil
         self.currentLongitude = location.coordinate.longitude
         self.currentLatitude = location.coordinate.latitude

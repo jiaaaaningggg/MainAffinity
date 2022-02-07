@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import JGProgressHUD
+import Firebase
 import FirebaseFirestore
 class RegisterViewController: UIViewController {
     var newDocumentID:String = "" //pass document id to Profile setup View Controller
@@ -109,7 +110,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        title = "Log In"
+        title = "Register"
         view.backgroundColor = .systemBackground
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register",
@@ -258,7 +259,6 @@ class RegisterViewController: UIViewController {
             profileSetupViewController?.userName = firstName.trimmingCharacters(in: .whitespacesAndNewlines) + " " + lastName.trimmingCharacters(in: .whitespacesAndNewlines)
             profileSetupViewController?.referenceDocId = self!.newDocumentID
             profileSetupViewController?.modalPresentationStyle = .fullScreen
-            profileSetupViewController?.modalTransitionStyle = .flipHorizontal
             self!.present(profileSetupViewController ?? UIViewController(), animated: true, completion: nil)
            
             

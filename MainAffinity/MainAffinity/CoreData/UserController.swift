@@ -30,53 +30,55 @@ class UserController {
             print("Could not logout User: \(error.userInfo)")
         }
     }
-    func loginUser(loginEmail:String) -> Bool{
+    func loginUser(loginEmail:String) -> Void{
         
+        var userFound:Bool = false
         var loginUser :User?
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let db = Firestore.firestore()
-        let userRef = db.collection("users")
-        var userFound:Bool = false
-        let query = userRef.whereField("email", isEqualTo: loginEmail)
-        query.getDocuments{ (querySnapshot,err) in
-            if let err = err{
+        db.collection("users").whereField("email", isEqualTo: loginEmail).getDocuments{ snapshot,err in
+            if err != nil{
                 print ("Error logging in user: \(err)")
             }
-            if let snapshot = querySnapshot{
-                for document in snapshot.documents{
-                    if (document.exists){
-                        let name = document["name"] as? String
-                        let gender = document["Gender"] as? String
-                        let language = document["Nationality"] as? String
-                        let age = document["age"] as? Int
-                        let bio = document["bio"] as? String
-                        let contactNo = document["contactNo"] as? String
-                        let currentLatitude = document["currentLatitude"] as? Double
-                        let currentLongitude = document["currentLongitude"] as? Double
-                        let dateOfBirth = Date (timeIntervalSince1970: (document["dob"] as! Double) / 1000.0)
-                        let nationality = document["Nationality"] as? String
-                        let speakingLanguage = document["Language"] as? String
-                        let minAgeFilter = document["minAgeFilter"] as? Int
-                        let maxAgeFilter = document["maxAgeFilter"] as? Int
+            else{
+                for document in (snapshot?.documents)!{
+                    //if (document.exists){
+                        let name = document.data()["name"] as? String
+                        let gender = document.data()["Gender"] as? String
+                        let language = document.data()["Nationality"] as? String
+                        let age = document.data()["age"] as? Int
+                        let bio = document.data()["bio"] as? String
+                        let contactNo = document.data()["contactNo"] as? String
+                        let currentLatitude = document.data()["currentLatitude"] as? Double
+                        let currentLongitude = document.data()["currentLongitude"] as? Double
+                        let dateOfBirth = Date (timeIntervalSince1970: (document.data()["dob"] as! Double) / 1000.0)
+                        let nationality = document.data()["Nationality"] as? String
+                        let speakingLanguage = document.data()["Language"] as? String
+                        let minAgeFilter = document.data()["minAgeFilter"] as? Int
+                        let maxAgeFilter = document.data()["maxAgeFilter"] as? Int
                         var occupation:String?
                         var institution : String?
-                        if let occ = document["occupation"] as? String{
+                        if let occ = document.data()["occupation"] as? String{
                             occupation = occ
                         }
-                        if let institute = document["institution"] as? String {
+                        if let institute = document.data()["institution"] as? String {
                             institution = institute
                         }
-                        let profileImage = self.retrieveProfileImage(userImageName: name!)
-                        loginUser = User(name: name!, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: loginEmail, institution: institution!, bio: bio!, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: profileImage)
+                       
+                        print("\(name!),\(age!),\(contactNo!)")
+                       // let profileImage = self.retrieveProfileImage(userImageName: name!)
+                        loginUser = User(name: name!, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: loginEmail, institution: institution!, bio: bio!, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: UIImage())
                         self.addNewUser(newUser: loginUser!)
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.currentUser = loginUser!
                        userFound = true
-                    }
+                    //}
                 }
             }
             
         }
-        return userFound
+//        return userFound
 
     }
     func addNewUser(newUser:User){
