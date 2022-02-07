@@ -388,9 +388,21 @@ class ProfileSetupViewController:UIViewController,UIPickerViewDelegate,UIPickerV
         userController.addNewUser(newUser: newUser)
         //2.add User profile to firebase
         let db = Firestore.firestore()
+        let values : Dictionary<String,Any>
     
+        if (institutionFld.text!.isEmpty && occupationFld.text!.isEmpty){//both instiuition & occupation not provided
+            values = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude,"minAgeFilter":newUser.minAgeFilter,"maxAgeFilter":newUser.maxAgeFilter]
+        }
+        else if (!institutionFld.text!.isEmpty && occupationFld.text!.isEmpty){//occupation not provided
+            values = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"institution":newUser.institution!,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude,"minAgeFilter":newUser.minAgeFilter,"maxAgeFilter":newUser.maxAgeFilter]
+        }
+        else if(institutionFld.text!.isEmpty && !occupationFld.text!.isEmpty) {//instituition not provided
+            values = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"occupation":newUser.occupation!,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude,"minAgeFilter":newUser.minAgeFilter,"maxAgeFilter":newUser.maxAgeFilter]
+        }
+        else{//both provided
+            values = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"institution":newUser.institution!,"occupation":newUser.occupation!,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude,"minAgeFilter":newUser.minAgeFilter,"maxAgeFilter":newUser.maxAgeFilter]
+        }
         
-        let values : Dictionary<String,Any> = ["name":newUser.name,"contactNo":newUser.contactNo!,"dob":newUser.dateOfBirth!.timeIntervalSince1970,"Nationality":newUser.nationality!,"Language":newUser.speakingLanguage!,"Gender":newUser.gender!,"bio":newUser.bio!,"institution":newUser.institution ?? nil,"occupation":newUser.occupation ?? nil,"isOnline":true,"email":newUser.email,"age":newUser.age!,"currentLatitude":locationManager.location!.coordinate.latitude,"currentLongitude":locationManager.location!.coordinate.longitude]
         //upload image to firebase storage
         db.collection("users").document(referenceDocId).setData(values)
         let storageRef = Storage.storage().reference(withPath: "images/\(newUser.name).jpg")

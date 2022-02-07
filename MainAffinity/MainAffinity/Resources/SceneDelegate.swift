@@ -36,11 +36,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //2nd condition : UserDefaults.standard.string(forKey: "email") != nil
         }
         else{ //user has signed out
-            //rootViewController = LoginViewController()
+            rootViewController = LoginViewController()
             
-            rootViewController = storyboard.instantiateViewController(withIdentifier: "SwipingVC")
-            
+            UINavigationController(rootViewController: rootViewController!)
         }
+        
         self.window!.rootViewController = rootViewController!
         self.window!.makeKeyAndVisible()
     }

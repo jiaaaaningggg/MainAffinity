@@ -10,12 +10,12 @@ import UIKit
 import FirebaseAuth
 import SwiftUI
 import SDWebImage
-
+import CoreData
 
 class ProfileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+    let userController = UserController()
     let data = ["Log Out"]
     
     override func viewDidLoad() {
@@ -115,7 +115,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             do {
-                try FirebaseAuth.Auth.auth().signOut()
+                try FirebaseAuth.Auth.auth().signOut() //firebase signOff
+                self!.userController.logOutUser() // remove user entity from coredata
                 let vc = LoginViewController()
                 let nav = UINavigationController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen

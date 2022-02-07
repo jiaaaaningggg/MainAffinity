@@ -15,14 +15,10 @@ import Foundation
 import FirebaseAuth
 
 import JGProgressHUD
-
+import CoreData
 class LoginViewController: UIViewController {
-
-    
-
+    private let userController = UserController()
     private let spinner = JGProgressHUD(style: .dark)
-
-    
 
     private let scrollView: UIScrollView = {
 
@@ -124,9 +120,6 @@ class LoginViewController: UIViewController {
 
     }()
 
-    
-
-   
 
     private let navBar : UINavigationBar = {
 
@@ -134,8 +127,7 @@ class LoginViewController: UIViewController {
 
         return bar
 
-                                  
-
+                                
     }()
 
     private let navItem = UINavigationItem(title: "Login")
@@ -148,15 +140,13 @@ class LoginViewController: UIViewController {
 
     }()
 
-   
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 
-        self.title = "Log In"
+//        self.title = "Log In"
 
                 view.backgroundColor = .systemBackground
 
@@ -168,8 +158,6 @@ class LoginViewController: UIViewController {
 
                                                                     action: #selector(didTapRegister))
 
-        
-
         loginButton.addTarget(
 
             self,
@@ -180,14 +168,13 @@ class LoginViewController: UIViewController {
 
         )
 
-        
-
         emailField.delegate = self
+        emailField.keyboardType = .emailAddress
+        emailField.clearButtonMode = .whileEditing
+        
 
         passwordField.delegate = self
-
-        
-
+        passwordField.clearButtonMode = .whileEditing
         view.addSubview(navBar)
 
         navItem.rightBarButtonItem = registerButtonItem
@@ -202,9 +189,6 @@ class LoginViewController: UIViewController {
 
         view.addSubview(scrollView)
 
-//
-
-//
 
         scrollView.addSubview(imageView)
 
@@ -215,8 +199,6 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(loginButton)
 
 }
-
-    
 
     override func viewDidLayoutSubviews() {
 
@@ -265,7 +247,6 @@ class LoginViewController: UIViewController {
     }
 
     
-
     @objc private func loginButtonTapped() {
 
             emailField.resignFirstResponder()
@@ -291,27 +272,18 @@ class LoginViewController: UIViewController {
         //Firebase login
 
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password, completion: { [weak self] authResult, error in
-
             
-
-            
-
             guard let strongSelf = self else {
 
                 return
 
             }
-
-            
-
+        
             DispatchQueue.main.async {
 
                 strongSelf.spinner.dismiss()
 
             }
-
-            
-
             guard let result = authResult, error == nil else {
 
                 print("Failed to log in user with email: \(email)")
@@ -320,27 +292,28 @@ class LoginViewController: UIViewController {
 
             }
 
-            
-
             let user = result.user
 
             
-
-            UserDefaults.standard.set(email, forKey: "email")
-
             
-
-            print("Logged in user")
-
-            strongSelf.navigationController?.dismiss(animated: true, completion: nil)
-
-            
-
+            if(self!.userController.loginUser(loginEmail: email)){//check if coredata saving works
+                UserDefaults.standard.set(email, forKey: "email")
+                print("Logged in user")
+                strongSelf.navigationController?.dismiss(animated: true, completion: nil)
+            }
+            else{
+                self!.alertFirebaseProfileError()
+            }
         })
 
     }
 
+    func alertFirebaseProfileError(){
+        let alert = UIAlertController(title: "Profile Not Found", message: "Your profile is invalid. To resolve this error, kindly setup a new Affinity Profile", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         
+        present(alert, animated: true, completion: nil)
+    }
 
     func alertUserLoginError(){
 

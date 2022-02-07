@@ -34,6 +34,9 @@ class RegisterViewController: UIViewController {
             field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
             field.leftViewMode = .always
             field.backgroundColor = .secondarySystemBackground
+            field.spellCheckingType = .no
+            field.autocorrectionType = .no
+            field.clearButtonMode = .whileEditing
             return field
         }()
 
@@ -49,6 +52,10 @@ class RegisterViewController: UIViewController {
             field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
             field.leftViewMode = .always
             field.backgroundColor = .secondarySystemBackground
+            field.spellCheckingType = .no
+            field.autocorrectionType = .no
+            field.clearButtonMode = .whileEditing
+
             return field
         }()
 
@@ -64,11 +71,15 @@ class RegisterViewController: UIViewController {
             field.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
             field.leftViewMode = .always
             field.backgroundColor = .secondarySystemBackground
+            field.keyboardType = .emailAddress
+            field.clearButtonMode = .whileEditing
+
             return field
         }()
 
         private let passwordField: UITextField = {
             let field = UITextField()
+            field.clearButtonMode = .whileEditing
             field.autocapitalizationType = .none
             field.autocorrectionType = .no
             field.returnKeyType = .done
@@ -246,8 +257,10 @@ class RegisterViewController: UIViewController {
             
             profileSetupViewController?.userName = firstName.trimmingCharacters(in: .whitespacesAndNewlines) + " " + lastName.trimmingCharacters(in: .whitespacesAndNewlines)
             profileSetupViewController?.referenceDocId = self!.newDocumentID
-            self!.present(profileSetupViewController ?? UIViewController(), animated: true, completion: nil)
             profileSetupViewController?.modalPresentationStyle = .fullScreen
+            profileSetupViewController?.modalTransitionStyle = .flipHorizontal
+            self!.present(profileSetupViewController ?? UIViewController(), animated: true, completion: nil)
+           
             
         })
     })

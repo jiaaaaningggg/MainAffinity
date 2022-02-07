@@ -8,9 +8,77 @@
 import Foundation
 import CoreData
 import UIKit
+import FirebaseFirestore
 import FirebaseStorage
+import Firebase
 import CoreLocation
 class UserController {
+    func logOutUser(){
+    
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CDUser")
+        do{
+            let userList = try? context.fetch(fetchRequest)
+            if userList?.count == 1 {//confirm only 1 user was logged in
+                let cdUser = userList![0]
+                try context.delete(cdUser)
+                try! context.save()
+            }
+        }
+        catch let error as NSError{
+            print("Could not logout User: \(error.userInfo)")
+        }
+    }
+    func loginUser(loginEmail:String) -> Bool{
+        
+        var loginUser :User?
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let db = Firestore.firestore()
+        let userRef = db.collection("users")
+        var userFound:Bool = false
+        let query = userRef.whereField("email", isEqualTo: loginEmail)
+        query.getDocuments{ (querySnapshot,err) in
+            if let err = err{
+                print ("Error logging in user: \(err)")
+            }
+            if let snapshot = querySnapshot{
+                for document in snapshot.documents{
+                    if (document.exists){
+                        let name = document["name"] as? String
+                        let gender = document["Gender"] as? String
+                        let language = document["Nationality"] as? String
+                        let age = document["age"] as? Int
+                        let bio = document["bio"] as? String
+                        let contactNo = document["contactNo"] as? String
+                        let currentLatitude = document["currentLatitude"] as? Double
+                        let currentLongitude = document["currentLongitude"] as? Double
+                        let dateOfBirth = Date (timeIntervalSince1970: (document["dob"] as! Double) / 1000.0)
+                        let nationality = document["Nationality"] as? String
+                        let speakingLanguage = document["Language"] as? String
+                        let minAgeFilter = document["minAgeFilter"] as? Int
+                        let maxAgeFilter = document["maxAgeFilter"] as? Int
+                        var occupation:String?
+                        var institution : String?
+                        if let occ = document["occupation"] as? String{
+                            occupation = occ
+                        }
+                        if let institute = document["institution"] as? String {
+                            institution = institute
+                        }
+                        let profileImage = self.retrieveProfileImage(userImageName: name!)
+                        loginUser = User(name: name!, contactNo: contactNo!, dob: dateOfBirth, nationality: nationality!, language: speakingLanguage!, gender: gender!, emailAddr: loginEmail, institution: institution!, bio: bio!, location: CLLocation.init(latitude: currentLatitude!, longitude: currentLongitude!), occupation: occupation ?? nil, image: profileImage)
+                        self.addNewUser(newUser: loginUser!)
+                       userFound = true
+                    }
+                }
+            }
+            
+        }
+        return userFound
+
+    }
     func addNewUser(newUser:User){
         let appDelegate = (UIApplication.shared.delegate) as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
