@@ -19,7 +19,7 @@ class TranslationController {
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         
-        //request.allHTTPHeaderFields = [ "key":api_key, "target":"en"]
+        
         let task = URLSession.shared.dataTask(with: request) { data,response,error in
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             if let response = response as? HTTPURLResponse {
@@ -52,7 +52,7 @@ class TranslationController {
         task.resume()
         
     }
-    func translateText(sourceLanaguageCode:String,targetLanguageCode:String,translateText:String) -> String{
+    func translateText(sourceLanaguageCode:String,targetLanguageCode:String,translateText:String) -> Void{
         var textOutput :String? //save the final translated output
         
         let postData = NSMutableData(data: "q=\(translateText)".data(using: String.Encoding.utf8)!) //query parameters for POST request
@@ -87,7 +87,7 @@ class TranslationController {
             }
         })
         task.resume()
-        return ""
+        
     }
     
 }
